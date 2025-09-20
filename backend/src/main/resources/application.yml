@@ -1,0 +1,47 @@
+server:
+  port: 5000
+
+spring:
+  application:
+    name: contact-keeper-backend
+  
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017/contactkeeper}
+      database: contactkeeper
+      auto-index-creation: true
+
+  security:
+    jwt:
+      secret: ${JWT_SECRET}
+      expiration: 3600000 # 1 hour in milliseconds
+
+logging:
+  level:
+    com.contactkeeper: DEBUG
+    org.springframework.security: DEBUG
+
+# Application Info
+info:
+  app:
+    name: Contact Keeper API
+    description: A RESTful API for managing contacts with JWT authentication
+    version: 1.0.0
+    author: Contact Keeper Team
+  build:
+    artifact: contact-keeper-backend
+    group: com.contactkeeper
+  java:
+    version: ${java.version}
+
+# Actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,mappings,beans
+  endpoint:
+    health:
+      show-details: always
+
+

@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+  <div class="container">
+    <a class="navbar-brand" (click)="goHome()">
+      <i class="fas fa-id-card-alt me-2"></i>
+      Contact Keeper
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" (click)="goHome()">Home</a>
+        </li>
+        <li class="nav-item" *ngIf="!authService.isAuthenticated()">
+          <a class="nav-link" (click)="goUsers()">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="goAbout()">About</a>
+        </li>
+      </ul>
+      
+      <ul class="navbar-nav" *ngIf="authService.isAuthenticated()">
+        <li class="nav-item">
+          <span class="navbar-text me-3">
+            Welcome, {{ (authService.currentUser$ | async)?.name }}
+          </span>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-outline-light btn-sm" (click)="logout()">
+            <i class="fas fa-sign-out-alt me-1"></i>
+            Logout
+          </button>
+        </li>
+      </ul>
+      
+      <ul class="navbar-nav" *ngIf="!authService.isAuthenticated()">
+        <li class="nav-item">
+          <a class="nav-link" (click)="goLogin()">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="goRegister()">Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+

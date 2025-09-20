@@ -1,0 +1,41 @@
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.lead {
+  font-size: 1.1rem;
+}
+
+.contact-card {
+  transition: transform 0.2s ease-in-out;
+  border: 1px solid #dee2e6;
+}
+
+.contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.profile-card .card-header {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-card .card-body {
+  color: white;
+}
+
+.profile-card .text-muted {
+  color: rgba(255, 255, 255, 0.8) !important;
+}

@@ -1,0 +1,22 @@
+<div class="mb-3">
+  <div class="input-group">
+    <span class="input-group-text">
+      <i class="fas fa-search"></i>
+    </span>
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Search contacts..."
+      [(ngModel)]="searchTerm"
+      (input)="onSearchChange()"
+    >
+    <button 
+      class="btn btn-outline-secondary" 
+      type="button"
+      (click)="clearSearch()"
+      *ngIf="searchTerm"
+    >
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+</div>

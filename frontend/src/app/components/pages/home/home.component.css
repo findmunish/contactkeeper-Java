@@ -1,0 +1,29 @@
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.badge {
+  font-size: 0.875em;
+}
+
+.contact-section {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 15px;
+  }
+  
+  .card-header h5 {
+    font-size: 1.1rem;
+  }
+}

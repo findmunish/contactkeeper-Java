@@ -1,0 +1,71 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      id="name"
+      formControlName="name"
+      [class.is-invalid]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+    >
+    <div class="invalid-feedback" *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+      Name is required.
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input 
+      type="email" 
+      class="form-control" 
+      id="email"
+      formControlName="email"
+      [class.is-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+    >
+    <div class="invalid-feedback" *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+      Please provide a valid email.
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone</label>
+    <input 
+      type="tel" 
+      class="form-control" 
+      id="phone"
+      formControlName="phone"
+    >
+  </div>
+  
+  <div class="mb-3">
+    <label for="type" class="form-label">Type</label>
+    <select 
+      class="form-select" 
+      id="type"
+      formControlName="type"
+    >
+      <option value="personal">Personal</option>
+      <option value="professional">Professional</option>
+    </select>
+  </div>
+  
+  <div class="d-grid gap-2">
+    <button 
+      type="submit" 
+      class="btn btn-primary"
+      [disabled]="contactForm.invalid || isLoading"
+    >
+      <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+      {{ isLoading ? (isEditMode ? 'Updating...' : 'Adding...') : (isEditMode ? 'Update Contact' : 'Add Contact') }}
+    </button>
+    <button 
+      type="button" 
+      class="btn btn-secondary"
+      *ngIf="isEditMode"
+      (click)="cancelEdit()"
+      [disabled]="isLoading"
+    >
+      Cancel
+    </button>
+  </div>
+</form>

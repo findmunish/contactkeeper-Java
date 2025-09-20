@@ -1,0 +1,28 @@
+<div class="alerts-container" *ngIf="(alertService.alerts$ | async)?.length">
+  <div 
+    *ngFor="let alert of alertService.alerts$ | async; trackBy: trackByAlertId" 
+    class="alert alert-{{ alert.type === 'error' ? 'danger' : alert.type }} alert-dismissible fade show"
+    role="alert"
+  >
+    <div class="alert-content">
+      <div class="alert-message">
+        <i class="fas fa-{{ getIcon(alert.type) }} me-2"></i>
+        {{ alert.message }}
+      </div>
+      
+      <!-- Countdown timer for auto-dismissing alerts -->
+      <div 
+        *ngIf="alert.autoDismiss && alert.timeout" 
+        class="alert-timer"
+        [style.animation-duration]="alert.timeout + 'ms'"
+      ></div>
+    </div>
+    
+    <button 
+      type="button" 
+      class="btn-close" 
+      (click)="alertService.removeAlert(alert.id)"
+      aria-label="Close alert"
+    ></button>
+  </div>
+</div>

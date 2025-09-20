@@ -1,0 +1,161 @@
+<!-- Authenticated User View -->
+<div *ngIf="authService.isAuthenticated() && currentUser">
+  <!-- User Information Card - Centered at Top -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0 text-center">
+            <i class="fas fa-user me-2"></i>
+            Your Profile
+          </h5>
+        </div>
+        <div class="card-body text-center">
+          <div class="mb-3">
+            <i class="fas fa-user-circle fa-4x text-primary"></i>
+          </div>
+          <h4 class="card-title">{{ currentUser.name }}</h4>
+          <p class="card-text text-muted">
+            <i class="fas fa-envelope me-2"></i>
+            {{ currentUser.email }}
+          </p>
+          <p class="card-text">
+            <small class="text-muted">
+              <i class="fas fa-calendar me-2"></i>
+              Member since {{ formatDate(currentUser.date) }}
+            </small>
+          </p>
+          <div class="mt-3">
+            <span class="badge bg-primary fs-6">
+              <i class="fas fa-address-book me-1"></i>
+              {{ contacts.length }} Contacts
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Contacts Section -->
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">
+              <i class="fas fa-address-book me-2"></i>
+              Your Contacts
+            </h5>
+            <span class="badge bg-secondary">{{ contacts.length }}</span>
+          </div>
+          
+          <div *ngIf="contacts.length > 0; else noContacts" class="row">
+            <!-- Responsive grid: 1 col on mobile, 2 on tablet, 3 on desktop, 4 on large screens -->
+            <div *ngFor="let contact of contacts" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+              <div class="card border h-100">
+                <div class="card-body p-3 d-flex flex-column">
+                  <h6 class="card-title mb-2">
+                    <i class="fas fa-user me-2"></i>
+                    {{ contact.name }}
+                  </h6>
+                  <p class="card-text mb-1 flex-grow-1">
+                    <i class="fas fa-envelope me-2 text-muted"></i>
+                    <a href="mailto:{{ contact.email }}" class="text-decoration-none">
+                      {{ contact.email }}
+                    </a>
+                  </p>
+                  <p class="card-text mb-2" *ngIf="contact.phone">
+                    <i class="fas fa-phone me-2 text-muted"></i>
+                    <a href="tel:{{ contact.phone }}" class="text-decoration-none">
+                      {{ contact.phone }}
+                    </a>
+                  </p>
+                  <div class="mt-auto">
+                    <span class="badge bg-{{ contact.type === 'personal' ? 'success' : 'info' }}">
+                      {{ contact.type | titlecase }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <ng-template #noContacts>
+            <div class="text-center py-4">
+              <i class="fas fa-address-book fa-3x text-muted mb-3"></i>
+              <p class="text-muted">No contacts found. Start adding contacts to see them here!</p>
+              <a href="/" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>
+                Add Your First Contact
+              </a>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+</div>
+
+<!-- Non-Authenticated User View -->
+<div *ngIf="!authService.isAuthenticated()" class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="text-center mb-0">
+          <i class="fas fa-info-circle me-2"></i>
+          About Contact Keeper
+        </h4>
+      </div>
+      <div class="card-body">
+        <div class="text-center mb-4">
+          <i class="fas fa-address-book fa-3x text-primary mb-3"></i>
+          <h5>Keep Your Contacts Organized</h5>
+        </div>
+        
+        <p class="lead text-center">
+          Contact Keeper is a modern, full-stack application built with Angular 17 and Spring Boot 
+          to help you manage your personal and professional contacts efficiently.
+        </p>
+        
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <h6><i class="fas fa-check-circle text-success me-2"></i>Features</h6>
+            <ul class="list-unstyled">
+              <li><i class="fas fa-plus text-primary me-2"></i>Add new contacts</li>
+              <li><i class="fas fa-edit text-primary me-2"></i>Edit existing contacts</li>
+              <li><i class="fas fa-trash text-primary me-2"></i>Delete contacts</li>
+              <li><i class="fas fa-search text-primary me-2"></i>Search and filter</li>
+              <li><i class="fas fa-shield-alt text-primary me-2"></i>Secure authentication</li>
+              <li><i class="fas fa-mobile-alt text-primary me-2"></i>Responsive design</li>
+            </ul>
+          </div>
+          
+          <div class="col-md-6">
+            <h6><i class="fas fa-cogs text-info me-2"></i>Technology Stack</h6>
+            <ul class="list-unstyled">
+              <li><i class="fas fa-angle-right text-secondary me-2"></i>Frontend: Angular 17</li>
+              <li><i class="fas fa-angle-right text-secondary me-2"></i>Backend: Spring Boot 3.2</li>
+              <li><i class="fas fa-angle-right text-secondary me-2"></i>Database: MongoDB</li>
+              <li><i class="fas fa-angle-right text-secondary me-2"></i>Authentication: JWT</li>
+              <li><i class="fas fa-angle-right text-secondary me-2"></i>UI Framework: Bootstrap 5</li>
+              <li><i class="fas fa-angle-right text-secondary me-2"></i>Icons: Font Awesome</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="text-center mt-4">
+          <p class="text-muted">
+            <i class="fas fa-heart text-danger me-1"></i>
+            Built with modern web technologies for the best user experience
+          </p>
+          <div class="mt-3">
+            <a href="/login" class="btn btn-primary me-2">
+              <i class="fas fa-sign-in-alt me-2"></i>
+              Login
+            </a>
+            <a href="/register" class="btn btn-outline-primary">
+              <i class="fas fa-user-plus me-2"></i>
+              Register
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
