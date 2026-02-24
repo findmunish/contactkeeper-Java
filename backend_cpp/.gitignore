@@ -1,0 +1,65 @@
+# Build directories
+build/
+out/
+cmake-build-*/
+*.dir/
+
+# Compiled object files
+*.o
+*.obj
+*.lo
+*.slo
+
+# Executables and libraries
+*.exe
+*.out
+*.app
+*.so
+*.so.*
+*.dylib
+*.dll
+*.a
+*.lib
+*.dll.a
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# IDE / editors
+.idea/
+*.swp
+*.swo
+*~
+.project
+.cproject
+.settings/
+
+# Debug / profiling
+*.pdb
+*.ilk
+*.exp
+*.idb
+*.iobj
+core
+core.*
+
+# vcpkg
+vcpkg_installed/
+
+# Conan
+conanbuildinfo.*
+conaninfo.txt
+
+# Misc
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.temp
+.env
+.env.local
